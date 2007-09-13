@@ -1,7 +1,6 @@
-zope.contenttype Package Readme
-===============================
-
-Overview
---------
+zope.contenttype
+****************
 
 A utility module for content-type handling.
+
+.. contents::
