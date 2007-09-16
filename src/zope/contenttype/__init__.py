@@ -13,9 +13,10 @@
 
 """A utility module for content-type handling.
 
-$Id: content_types.py 24764 2004-05-17 06:13:48Z philikon $
+$Id$
 """
 
+import string
 import re
 import os.path
 import mimetypes
@@ -23,19 +24,34 @@ import mimetypes
 
 find_binary = re.compile('[\0-\7]').search
 
+  
 def text_type(s):
-    s = s.strip()
+    """See if we can figure out the type by content.
+    We may want this to be efficient for WebDAV et al.
+    """
 
-    # Yuk. See if we can figure out the type by content.
-    if s.lower().startswith('<html>') or '</' in s:
+    # at least the maximum length of any tags we look for
+    iMAXLEN=14 
+    if len(s) < iMAXLEN: return 'text/plain'
+
+    i = 0
+    while s[i] in string.whitespace: 
+       i += 1
+
+    s = s[i : i+iMAXLEN].lower()
+    
+    if s.startswith('<html>'):
+        return 'text/html'
+  
+    if s.startswith('<!doctype html'):
         return 'text/html'
 
-    elif s.startswith('<?xml'):
+    # what about encodings??
+    if s.startswith('<?xml'):
         return 'text/xml'
-
-    else:
-        return 'text/plain'
-
+    
+    return 'text/plain'
+ 
 
 def guess_content_type(name='', body='', default=None):
     # Attempt to determine the content type (and possibly

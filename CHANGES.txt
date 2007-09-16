@@ -1,6 +1,12 @@
 Change History
 ==============
 
+3.5.0 (unreleased)
+------------------
+
+Improved text_type(). Based on the patch from
+http://www.zope.org/Collectors/Zope/2355/
+
 
 3.4.0 (2007-09-13)
 ------------------

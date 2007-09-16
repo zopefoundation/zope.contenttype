@@ -13,7 +13,7 @@
 ##############################################################################
 """Tests of the contenttypes extension mechanism.
 
-$Id: testContenttype.py 24763 2004-05-17 05:59:28Z philikon $
+$Id$
 """
 
 import mimetypes
@@ -68,6 +68,16 @@ class ContentTypesTestCase(unittest.TestCase):
         self.assert_(encoding is None)
         self.assertEqual(ctype, "text/x-vnd.zope.test-mime-type-2")
         self.check_types_count(2)
+
+    
+    def test_text_type(self):
+        t = contenttype.text_type
+        self.assertEqual(t('<HtmL><body>hello world</body></html>'), 
+                         'text/html')
+        self.assertEqual(t('<?xml version="1.0"><foo/>'), 'text/xml')
+        self.assertEqual(t('<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"' +
+                           ' "http://www.w3.org/TR/html4/loose.dtd">'),
+                           'text/html')
 
 
 def test_suite():
