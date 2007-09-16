@@ -1,7 +1,7 @@
 Change History
 ==============
 
-3.5.0 (unreleased)
+3.4.1 (unreleased)
 ------------------
 
 Improved text_type(). Based on the patch from
