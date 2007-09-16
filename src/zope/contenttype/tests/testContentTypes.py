@@ -75,6 +75,8 @@ class ContentTypesTestCase(unittest.TestCase):
         self.assertEqual(t('<HtmL><body>hello world</body></html>'), 
                          'text/html')
         self.assertEqual(t('<?xml version="1.0"><foo/>'), 'text/xml')
+        self.assertEqual(t('<?XML version="1.0"><foo/>'), 'text/plain')
+        self.assertEqual(t('foo bar'), 'text/plain')
         self.assertEqual(t('<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"' +
                            ' "http://www.w3.org/TR/html4/loose.dtd">'),
                            'text/html')

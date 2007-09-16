@@ -38,7 +38,8 @@ def text_type(s):
     while s[i] in string.whitespace: 
        i += 1
 
-    s = s[i : i+iMAXLEN].lower()
+    s2 = s[i : i+iMAXLEN]
+    s = s2.lower()
     
     if s.startswith('<html>'):
         return 'text/html'
@@ -47,7 +48,7 @@ def text_type(s):
         return 'text/html'
 
     # what about encodings??
-    if s.startswith('<?xml'):
+    if s2.startswith('<?xml'):
         return 'text/xml'
     
     return 'text/plain'
