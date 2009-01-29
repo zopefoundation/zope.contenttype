@@ -50,10 +50,11 @@ setup(
         ],
     description='Zope contenttype',
     long_description=long_description,
-
     packages=find_packages('src'),
     package_dir={'': 'src'},
     namespace_packages=['zope',],
+    install_requires=['setuptools',
+                      ],
     include_package_data=True,
     zip_safe=False,
     )
