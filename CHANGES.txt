@@ -9,6 +9,8 @@ Change History
 
 * Add missing setuptools dependency to setup.py.
 
+* Added reference documentation.
+
 3.4.0 (2007-09-13)
 ------------------
 

@@ -26,10 +26,11 @@ find_binary = re.compile('[\0-\7]').search
 
   
 def text_type(s):
-    """See if we can figure out the type by content.
-    We may want this to be efficient for WebDAV et al.
-    """
+    """Given an unnamed piece of text, try to guess its content type.
 
+    Detects HTML, XML, and plain text.  Returns a MIME type string
+    such as 'text/html'.
+    """
     # at least the maximum length of any tags we look for
     iMAXLEN=14 
     if len(s) < iMAXLEN: return 'text/plain'
@@ -55,6 +56,14 @@ def text_type(s):
  
 
 def guess_content_type(name='', body='', default=None):
+    """Given a named piece of content, try to guess its content type.
+
+    The implementation relies on the 'mimetypes' standard Python module,
+    the 'text_type' function also defined in this module, and a simple
+    heuristic for detecting binary data.
+
+    Returns a MIME type string such as "text/html".
+    """
     # Attempt to determine the content type (and possibly
     # content-encoding) based on an an object's name and
     # entity body.
@@ -73,6 +82,19 @@ def guess_content_type(name='', body='', default=None):
 
 
 def add_files(filenames):
+    """Add the names of MIME type map files to the standard 'mimetypes' module.
+
+    MIME type map files are used for detecting the MIME type of some content
+    based on the content's filename extension.
+
+    The files should be formatted similarly to the 'mime.types' file
+    included in this package.  Each line specifies a MIME type and the
+    file extensions that imply that MIME type.  Here are some sample lines::
+
+      text/css                        css
+      text/plain                      bat c h pl ksh
+      text/x-vcard                    vcf
+    """
     # Make sure the additional files are either loaded or scheduled to
     # be loaded:
     if mimetypes.inited:
