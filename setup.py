@@ -34,7 +34,7 @@ long_description = (
 
 setup(
     name='zope.contenttype',
-    version='3.4.1dev',
+    version='3.4.2dev',
     url='http://pypi.python.org/pypi/zope.contenttype',
     author='Zope Corporation and Contributors',
     author_email='zope3-dev@zope.org',
