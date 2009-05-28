@@ -45,8 +45,6 @@ class ContentTypesTestCase(unittest.TestCase):
         self.assertEqual(len(mimetypes.types_map),
                          len(self._old_state["types_map"]) + delta)
 
-    
-
     def test_add_one_file(self):
         ntypes = len(mimetypes.types_map)
         contenttype.add_files([MIME_TYPES_1])
@@ -69,7 +67,6 @@ class ContentTypesTestCase(unittest.TestCase):
         self.assertEqual(ctype, "text/x-vnd.zope.test-mime-type-2")
         self.check_types_count(2)
 
-    
     def test_text_type(self):
         t = contenttype.text_type
         self.assertEqual(t('<HtmL><body>hello world</body></html>'), 
