@@ -19,7 +19,7 @@ __docformat__ = "reStructuredText"
 import re
 import unittest
 
-from zope.publisher import contenttype
+from zope.contenttype import parse
 
 
 class ParseOrderedTestCase(unittest.TestCase):
@@ -27,7 +27,7 @@ class ParseOrderedTestCase(unittest.TestCase):
     empty_params = []
 
     def setUp(self):
-        self.parse = contenttype.parseOrdered
+        self.parse = parse.parseOrdered
 
     def oneParam(self, name, value):
         return [(name, value)]
@@ -116,7 +116,7 @@ class ParseTestCase(ParseOrderedTestCase):
     empty_params = {}
 
     def setUp(self):
-        self.parse = contenttype.parse
+        self.parse = parse.parse
 
     def oneParam(self, name, value):
         return {name: value}
@@ -133,61 +133,61 @@ class ParseTestCase(ParseOrderedTestCase):
 class JoinTestCase(unittest.TestCase):
 
     def test_without_params(self):
-        self.assertEqual(contenttype.join(("text", "plain", [])),
+        self.assertEqual(parse.join(("text", "plain", [])),
                          "text/plain")
-        self.assertEqual(contenttype.join(("text", "plain", {})),
+        self.assertEqual(parse.join(("text", "plain", {})),
                          "text/plain")
 
     def test_single_token_param(self):
         self.assertEqual(
-            contenttype.join(("text", "plain", [("charset", "UTF-8")])),
+            parse.join(("text", "plain", [("charset", "UTF-8")])),
             "text/plain;charset=UTF-8")
         self.assertEqual(
-            contenttype.join(("text", "plain", {"charset": "UTF-8"})),
+            parse.join(("text", "plain", {"charset": "UTF-8"})),
             "text/plain;charset=UTF-8")
 
     def test_multi_params_list_maintains_order(self):
         # multiple parameters given as a list maintain order:
         self.assertEqual(
-            contenttype.join(("text", "plain",
+            parse.join(("text", "plain",
                               [("charset", "UTF-8"), ("format", "flowed")])),
             "text/plain;charset=UTF-8;format=flowed")
         self.assertEqual(
-            contenttype.join(("text", "plain",
+            parse.join(("text", "plain",
                               [("format", "flowed"), ("charset", "UTF-8")])),
             "text/plain;format=flowed;charset=UTF-8")
 
     def test_multi_params_dict_sorted_order(self):
         # multiple parameters given as a dict are sorted by param name:
         self.assertEqual(
-            contenttype.join(("text", "plain",
+            parse.join(("text", "plain",
                               {"charset": "UTF-8", "format": "flowed"})),
             "text/plain;charset=UTF-8;format=flowed")
 
     def test_params_list_quoted(self):
         # parameter values are quoted automatically:
-        self.assertEqual(contenttype.join(("a", "b", [("c", "")])),
+        self.assertEqual(parse.join(("a", "b", [("c", "")])),
                          'a/b;c=""')
-        self.assertEqual(contenttype.join(("a", "b", [("c", "ab cd")])),
+        self.assertEqual(parse.join(("a", "b", [("c", "ab cd")])),
                          'a/b;c="ab cd"')
-        self.assertEqual(contenttype.join(("a", "b", [("c", " \t")])),
+        self.assertEqual(parse.join(("a", "b", [("c", " \t")])),
                          'a/b;c=" \t"')
-        self.assertEqual(contenttype.join(("a", "b", [("c", '"')])),
+        self.assertEqual(parse.join(("a", "b", [("c", '"')])),
                          r'a/b;c="\""')
-        self.assertEqual(contenttype.join(("a", "b", [("c", "\n")])),
+        self.assertEqual(parse.join(("a", "b", [("c", "\n")])),
                          'a/b;c="\\\n"')
 
     def test_params_dict_quoted(self):
         # parameter values are quoted automatically:
-        self.assertEqual(contenttype.join(("a", "b", {"c": ""})),
+        self.assertEqual(parse.join(("a", "b", {"c": ""})),
                          'a/b;c=""')
-        self.assertEqual(contenttype.join(("a", "b", {"c": "ab cd"})),
+        self.assertEqual(parse.join(("a", "b", {"c": "ab cd"})),
                          'a/b;c="ab cd"')
-        self.assertEqual(contenttype.join(("a", "b", {"c": " \t"})),
+        self.assertEqual(parse.join(("a", "b", {"c": " \t"})),
                          'a/b;c=" \t"')
-        self.assertEqual(contenttype.join(("a", "b", {"c": '"'})),
+        self.assertEqual(parse.join(("a", "b", {"c": '"'})),
                          r'a/b;c="\""')
-        self.assertEqual(contenttype.join(("a", "b", {"c": "\n"})),
+        self.assertEqual(parse.join(("a", "b", {"c": "\n"})),
                          'a/b;c="\\\n"')
 
 
