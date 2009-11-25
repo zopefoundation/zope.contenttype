@@ -15,72 +15,72 @@
 
 $Id$
 """
-
-import mimetypes
-import os.path
-import sys
 import unittest
-
-from zope import contenttype
-
-try:
-    __file__
-except NameError:
-    __file__ = os.path.realpath(sys.argv[0])
-
-here = os.path.dirname(os.path.abspath(__file__))
-MIME_TYPES_1 = os.path.join(here, "mime.types-1")
-MIME_TYPES_2 = os.path.join(here, "mime.types-2")
 
 class ContentTypesTestCase(unittest.TestCase):
 
     def setUp(self):
+        import mimetypes
         mimetypes.init()
         self._old_state = mimetypes.__dict__.copy()
 
     def tearDown(self):
+        import mimetypes
+        mimetypes.__dict__.clear()
         mimetypes.__dict__.update(self._old_state)
 
-    def check_types_count(self, delta):
+    def _check_types_count(self, delta):
+        import mimetypes
         self.assertEqual(len(mimetypes.types_map),
                          len(self._old_state["types_map"]) + delta)
 
+    def _getFilename(self, name):
+        import os.path
+        here = os.path.dirname(os.path.abspath(__file__))
+        return os.path.join(here, name)
+
     def test_add_one_file(self):
-        ntypes = len(mimetypes.types_map)
-        contenttype.add_files([MIME_TYPES_1])
-        ctype, encoding = contenttype.guess_content_type("foo.ztmt-1")
+        from zope.contenttype import add_files
+        from zope.contenttype import guess_content_type
+        filename = self._getFilename('mime.types-1')
+        add_files([filename])
+        ctype, encoding = guess_content_type("foo.ztmt-1")
         self.assert_(encoding is None)
         self.assertEqual(ctype, "text/x-vnd.zope.test-mime-type-1")
-        ctype, encoding = contenttype.guess_content_type("foo.ztmt-1.gz")
+        ctype, encoding = guess_content_type("foo.ztmt-1.gz")
         self.assertEqual(encoding, "gzip")
         self.assertEqual(ctype, "text/x-vnd.zope.test-mime-type-1")
-        self.check_types_count(1)
+        self._check_types_count(1)
 
     def test_add_two_files(self):
-        ntypes = len(mimetypes.types_map)
-        contenttype.add_files([MIME_TYPES_1, MIME_TYPES_2])
-        ctype, encoding = contenttype.guess_content_type("foo.ztmt-1")
+        from zope.contenttype import add_files
+        from zope.contenttype import guess_content_type
+        filename1 = self._getFilename('mime.types-1')
+        filename2 = self._getFilename('mime.types-2')
+        add_files([filename1, filename2])
+        ctype, encoding = guess_content_type("foo.ztmt-1")
         self.assert_(encoding is None)
         self.assertEqual(ctype, "text/x-vnd.zope.test-mime-type-1")
-        ctype, encoding = contenttype.guess_content_type("foo.ztmt-2")
+        ctype, encoding = guess_content_type("foo.ztmt-2")
         self.assert_(encoding is None)
         self.assertEqual(ctype, "text/x-vnd.zope.test-mime-type-2")
-        self.check_types_count(2)
+        self._check_types_count(2)
 
     def test_text_type(self):
-        t = contenttype.text_type
-        self.assertEqual(t('<HtmL><body>hello world</body></html>'), 
+        from zope.contenttype import text_type
+        self.assertEqual(text_type('<HtmL><body>hello world</body></html>'),
                          'text/html')
-        self.assertEqual(t('<?xml version="1.0"><foo/>'), 'text/xml')
-        self.assertEqual(t('<?XML version="1.0"><foo/>'), 'text/plain')
-        self.assertEqual(t('foo bar'), 'text/plain')
-        self.assertEqual(t('<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"' +
-                           ' "http://www.w3.org/TR/html4/loose.dtd">'),
-                           'text/html')
+        self.assertEqual(text_type('<?xml version="1.0"><foo/>'),
+                         'text/xml')
+        self.assertEqual(text_type('<?XML version="1.0"><foo/>'),
+                         'text/plain')
+        self.assertEqual(text_type('foo bar'),
+                         'text/plain')
+        self.assertEqual(text_type('<!DOCTYPE HTML PUBLIC '
+                                   '"-//W3C//DTD HTML 4.01 Transitional//EN" '
+                                   '"http://www.w3.org/TR/html4/loose.dtd">'),
+                         'text/html')
 
 
 def test_suite():
     return unittest.makeSuite(ContentTypesTestCase)
-
-if __name__ == '__main__':
-    unittest.main()
