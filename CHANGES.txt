@@ -2,6 +2,10 @@ Change History
 ==============
 
 
+3.4.3 (2009-12-28)
+------------------
+Updated mime-type for .js to be application/javascript.
+
 3.4.0 (2007-09-13)
 ------------------
 
