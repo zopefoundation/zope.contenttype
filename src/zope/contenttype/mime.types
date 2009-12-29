@@ -5,7 +5,7 @@ application/pkcs7-mime          p7c
 application/vnd.mozilla.xul+xml xul
 application/vnd.ms-excel        xlb xls
 application/vnd.ms-powerpoint   pot ppa pps ppt pwz
-application/x-javascript        js
+application/javascript          js
 application/x-pkcs12            p12 pfx
 application/x-pn-realaudio      ram
 audio/mpeg                      mp3

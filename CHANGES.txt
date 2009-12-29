@@ -4,13 +4,17 @@ Change History
 3.5.1 (unreleased)
 ------------------
 
-* (no changes yet)
+* Updated mime-type for .js to be application/javascript.
 
 3.5.0 (2009-10-22)
 ------------------
 
 * Moved the implementation of zope.publisher.contenttype to
   zope.contenttype.parse, moved tests along.
+
+3.4.3 (2009-12-28)
+------------------
+* Updated mime-type for .js to be application/javascript.
 
 3.4.2 (2009-05-28)
 ------------------
