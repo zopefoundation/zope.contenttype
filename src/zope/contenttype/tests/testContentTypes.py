@@ -67,8 +67,9 @@ class ContentTypesTestCase(unittest.TestCase):
         self._check_types_count(2)
 
     def test_text_type(self):
+        HTML = '<HtmL><body>hello world</body></html>'
         from zope.contenttype import text_type
-        self.assertEqual(text_type('<HtmL><body>hello world</body></html>'),
+        self.assertEqual(text_type(HTML),
                          'text/html')
         self.assertEqual(text_type('<?xml version="1.0"><foo/>'),
                          'text/xml')
@@ -80,6 +81,13 @@ class ContentTypesTestCase(unittest.TestCase):
                                    '"-//W3C//DTD HTML 4.01 Transitional//EN" '
                                    '"http://www.w3.org/TR/html4/loose.dtd">'),
                          'text/html')
+        # See https://bugs.launchpad.net/bugs/487998
+        self.assertEqual(text_type(' ' * 14 + HTML),
+                         'text/html')
+        self.assertEqual(text_type(' ' * 14 + 'abc'),
+                         'text/plain')
+        self.assertEqual(text_type(' ' * 14),
+                         'text/plain')
 
 
 def test_suite():

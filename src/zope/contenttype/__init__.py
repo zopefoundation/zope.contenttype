@@ -32,25 +32,21 @@ def text_type(s):
     such as 'text/html'.
     """
     # at least the maximum length of any tags we look for
-    iMAXLEN=14 
-    if len(s) < iMAXLEN: return 'text/plain'
+    max_tags = 14
+    s = s.strip()[:max_tags]
+    s2 = s.lower()
 
-    i = 0
-    while s[i] in string.whitespace: 
-       i += 1
+    if len(s) == max_tags:
 
-    s2 = s[i : i+iMAXLEN]
-    s = s2.lower()
+        if s2.startswith('<html>'):
+            return 'text/html'
     
-    if s.startswith('<html>'):
-        return 'text/html'
-  
-    if s.startswith('<!doctype html'):
-        return 'text/html'
+        if s2.startswith('<!doctype html'):
+            return 'text/html'
 
-    # what about encodings??
-    if s2.startswith('<?xml'):
-        return 'text/xml'
+        # what about encodings??
+        if s.startswith('<?xml'):
+            return 'text/xml'
     
     return 'text/plain'
  

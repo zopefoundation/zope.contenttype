@@ -4,6 +4,9 @@ Change History
 3.5.1 (unreleased)
 ------------------
 
+* LP #242321:  fix IndexError raised when testing strings consisting
+  solely of leading whitespace.
+
 * Updated mime-type for .js to be application/javascript.
 
 3.5.0 (2009-10-22)
