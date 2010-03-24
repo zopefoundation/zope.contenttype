@@ -1,7 +1,7 @@
 Change History
 ==============
 
-3.5.1 (unreleased)
+3.5.1 (2010-03-23)
 ------------------
 
 * LP #242321:  fix IndexError raised when testing strings consisting
