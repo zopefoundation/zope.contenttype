@@ -1,6 +1,6 @@
 ##############################################################################
 #
-# Copyright (c) 2006 Zope Corporation and Contributors.
+# Copyright (c) 2006 Zope Foundation and Contributors.
 # All Rights Reserved.
 #
 # This software is subject to the provisions of the Zope Public License,
@@ -36,7 +36,7 @@ setup(
     name='zope.contenttype',
     version='3.4.4dev',
     url='http://pypi.python.org/pypi/zope.contenttype',
-    author='Zope Corporation and Contributors',
+    author='Zope Foundation and Contributors',
     author_email='zope3-dev@zope.org',
     license='ZPL 2.1',
     classifiers=[

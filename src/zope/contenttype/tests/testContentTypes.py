@@ -1,6 +1,6 @@
 ##############################################################################
 #
-# Copyright (c) 2003 Zope Corporation and Contributors.
+# Copyright (c) 2003 Zope Foundation and Contributors.
 # All Rights Reserved.
 #
 # This software is subject to the provisions of the Zope Public License,
@@ -13,7 +13,7 @@
 ##############################################################################
 """Tests of the contenttypes extension mechanism.
 
-$Id: testContenttype.py 24763 2004-05-17 05:59:28Z philikon $
+$Id$
 """
 
 import mimetypes

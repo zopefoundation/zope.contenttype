@@ -1,6 +1,6 @@
 ##############################################################################
 #
-# Copyright (c) 2003 Zope Corporation and Contributors. All Rights Reserved.
+# Copyright (c) 2003 Zope Foundation and Contributors.
 #
 # This software is subject to the provisions of the Zope Public License,
 # Version 2.1 (ZPL).  A copy of the ZPL should accompany this distribution.
@@ -13,7 +13,7 @@
 
 """A utility module for content-type handling.
 
-$Id: content_types.py 24764 2004-05-17 06:13:48Z philikon $
+$Id$
 """
 
 import re
