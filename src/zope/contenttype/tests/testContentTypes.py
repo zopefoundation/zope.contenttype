@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Tests of the contenttypes extension mechanism.
-
-$Id$
 """
 import unittest
 

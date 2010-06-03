@@ -10,13 +10,8 @@
 # FOR A PARTICULAR PURPOSE
 #
 ##############################################################################
-
 """A utility module for content-type handling.
-
-$Id$
 """
-
-import string
 import re
 import os.path
 import mimetypes
