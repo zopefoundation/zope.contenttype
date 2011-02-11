@@ -4,7 +4,7 @@ Change History
 3.5.2 (unreleased)
 ------------------
 
-* No changes yet.
+* LP #717289:  added 'video/x-m4v' mimetype for the '.m4v' extension.
 
 3.5.1 (2010-03-23)
 ------------------
