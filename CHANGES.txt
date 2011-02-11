@@ -1,7 +1,7 @@
 Change History
 ==============
 
-3.5.2 (unreleased)
+3.5.2 (2011-02-11)
 ------------------
 
 * LP #717289:  added 'video/x-m4v' mimetype for the '.m4v' extension.
