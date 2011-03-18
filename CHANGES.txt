@@ -4,7 +4,7 @@ Change History
 3.5.3 (unreleased)
 ------------------
 
-* TBD
+* Added new mime types for web fonts, cache manifest and new media formats.
 
 3.5.2 (2011-02-11)
 ------------------

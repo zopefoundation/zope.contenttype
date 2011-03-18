@@ -4,19 +4,30 @@ application/pdf                 pdf
 application/pkcs7-mime          p7c
 application/vnd.mozilla.xul+xml xul
 application/vnd.ms-excel        xlb xls
+application/vnd.ms-fontobject   eot
 application/vnd.ms-powerpoint   pot ppa pps ppt pwz
 application/javascript          js
+application/x-font-woff         woff
 application/x-pkcs12            p12 pfx
 application/x-pn-realaudio      ram
 audio/mpeg                      mp3
 audio/x-pn-realaudio            ra
+font/opentype                   otf
+font/truetype                   ttf
 image/pict                      pct pic pict
+image/svg+xml                   svg svgz
+image/vnd.microsoft.icon        ico
+image/webp                      webp
 message/rfc822                  eml nws mht mhtml
+text/cache-manifest             manifest
 text/css                        css
 text/plain                      bat c h pl ksh
 text/x-vcard                    vcf
 text/xml                        xml xsl
+video/mp4                       mp4
+video/ogg                       ogv
 video/mpeg                      m1v mpa
+video/webm                      webm
 video/x-m4v                     m4v
 application/vnd.ms-word.document.macroEnabled.12                           docm
 application/vnd.openxmlformats-officedocument.wordprocessingml.document    docx
