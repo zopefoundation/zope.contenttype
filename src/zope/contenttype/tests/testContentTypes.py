@@ -79,6 +79,9 @@ class ContentTypesTestCase(unittest.TestCase):
                                    '"-//W3C//DTD HTML 4.01 Transitional//EN" '
                                    '"http://www.w3.org/TR/html4/loose.dtd">'),
                          'text/html')
+        self.assertEqual(text_type('\n\n<!DOCTYPE html>\n'), 'text/html')
+        # we can also parse text snippets
+        self.assertEqual(text_type('<p>Hello</p>'), 'text/html')
         # See https://bugs.launchpad.net/bugs/487998
         self.assertEqual(text_type(' ' * 14 + HTML),
                          'text/html')

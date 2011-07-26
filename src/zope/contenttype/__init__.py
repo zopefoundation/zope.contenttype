@@ -32,17 +32,20 @@ def text_type(s):
     s2 = s.lower()
 
     if len(s) == max_tags:
-
         if s2.startswith('<html>'):
             return 'text/html'
-    
+
         if s2.startswith('<!doctype html'):
             return 'text/html'
 
         # what about encodings??
         if s.startswith('<?xml'):
             return 'text/xml'
-    
+
+    # we also recognize small snippets of HTML
+    if '</' in s:
+        return 'text/html'
+
     return 'text/plain'
  
 

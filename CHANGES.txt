@@ -4,6 +4,7 @@ Change History
 3.5.4 (unreleased)
 ------------------
 
+* Restore detection of HTML snippets from 3.4 series.
 
 3.5.3 (2011-03-18)
 ------------------
