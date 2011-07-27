@@ -72,7 +72,7 @@ class ContentTypesTestCase(unittest.TestCase):
         self.assertEqual(text_type('<?xml version="1.0"><foo/>'),
                          'text/xml')
         self.assertEqual(text_type('<?XML version="1.0"><foo/>'),
-                         'text/plain')
+                         'text/xml')
         self.assertEqual(text_type('foo bar'),
                          'text/plain')
         self.assertEqual(text_type('<!DOCTYPE HTML PUBLIC '
@@ -82,6 +82,8 @@ class ContentTypesTestCase(unittest.TestCase):
         self.assertEqual(text_type('\n\n<!DOCTYPE html>\n'), 'text/html')
         # we can also parse text snippets
         self.assertEqual(text_type('<p>Hello</p>'), 'text/html')
+        longtext = 'abc ' * 100
+        self.assertEqual(text_type('<p>%s</p>' % longtext), 'text/html')
         # See https://bugs.launchpad.net/bugs/487998
         self.assertEqual(text_type(' ' * 14 + HTML),
                          'text/html')

@@ -1,9 +1,11 @@
 Change History
 ==============
 
-3.5.5 (unreleased)
+3.5.5 (2011-07-27)
 ------------------
 
+* Properly restore the HTML snippet detection, by looking at the entire string
+  and not just its start.
 
 3.5.4 (2011-07-26)
 ------------------

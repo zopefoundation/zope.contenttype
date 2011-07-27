@@ -28,10 +28,9 @@ def text_type(s):
     """
     # at least the maximum length of any tags we look for
     max_tags = 14
-    s = s.strip()[:max_tags]
-    s2 = s.lower()
+    s2 = s.strip()[:max_tags].lower()
 
-    if len(s) == max_tags:
+    if len(s2) == max_tags:
         if s2.startswith('<html>'):
             return 'text/html'
 
@@ -39,10 +38,11 @@ def text_type(s):
             return 'text/html'
 
         # what about encodings??
-        if s.startswith('<?xml'):
+        if s2.startswith('<?xml'):
             return 'text/xml'
 
-    # we also recognize small snippets of HTML
+    # we also recognize small snippets of HTML - the closing tag might be
+    # anywhere, even at the end of 
     if '</' in s:
         return 'text/html'
 
