@@ -16,10 +16,9 @@ import re
 import os.path
 import mimetypes
 
-
 find_binary = re.compile('[\0-\7]').search
 
-  
+
 def text_type(s):
     """Given an unnamed piece of text, try to guess its content type.
 
@@ -42,12 +41,12 @@ def text_type(s):
             return 'text/xml'
 
     # we also recognize small snippets of HTML - the closing tag might be
-    # anywhere, even at the end of 
+    # anywhere, even at the end of
     if '</' in s:
         return 'text/html'
 
     return 'text/plain'
- 
+
 
 def guess_content_type(name='', body='', default=None):
     """Given a named piece of content, try to guess its content type.
@@ -105,7 +104,15 @@ def add_files(filenames):
 here = os.path.dirname(os.path.abspath(__file__))
 add_files([os.path.join(here, "mime.types")])
 
-if __name__ == '__main__':
+# Python 2/3 compatibility for testing.
+def _print(s):
+    print(s)
+
+def main():
     items = mimetypes.types_map.items()
-    items.sort()
-    for item in items: print "%s:\t%s" % item
+    items = sorted(items)
+    for item in items:
+        _print("%s:\t%s" % item)
+
+if __name__ == '__main__': #pragma: nocover
+    main()

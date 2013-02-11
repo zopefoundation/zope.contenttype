@@ -112,7 +112,8 @@ def _unescape(string):
     return string
 
 
-def join((major, minor, params)):
+def join(spec):
+    (major, minor, params) = spec
     pstr = ""
     try:
         params.items
@@ -121,7 +122,7 @@ def join((major, minor, params)):
     else:
         params = params.items()
         # ensure a predictable order:
-        params.sort()
+        params = sorted(params)
     for name, value in params:
         pstr += ";%s=%s" % (name, _escape(value))
     return "%s/%s%s" % (major, minor, pstr)

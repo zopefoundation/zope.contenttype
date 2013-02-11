@@ -4,6 +4,12 @@ Change History
 4.0.0 (unreleased)
 ------------------
 
+- Added some tests for better coverage.
+
+- Added `tox.ini` and manifest.
+
+- Added support for Python 3.3 and PyPy 1.9.
+
 - Dropped support for Python 2.4 and 2.5.
 
 3.5.5 (2011-07-27)

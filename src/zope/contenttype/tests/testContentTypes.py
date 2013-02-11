@@ -37,6 +37,26 @@ class ContentTypesTestCase(unittest.TestCase):
         here = os.path.dirname(os.path.abspath(__file__))
         return os.path.join(here, name)
 
+    def test_main(self):
+        import zope.contenttype
+        _print = zope.contenttype._print
+        zope.contenttype._print = lambda s: None
+        zope.contenttype.main()
+        zope.contenttype._print = _print
+
+    def test_guess_content_type(self):
+        from zope.contenttype import add_files
+        from zope.contenttype import guess_content_type
+        filename = self._getFilename('mime.types-1')
+        add_files([filename])
+        ctype, encoding = guess_content_type(body='text file')
+        self.assertEqual(ctype, "text/plain")
+        ctype, encoding = guess_content_type(body='\001binary')
+        self.assertEqual(ctype, "application/octet-stream")
+        ctype, encoding = guess_content_type()
+        self.assertEqual(ctype, "text/x-unknown-content-type")
+
+
     def test_add_one_file(self):
         from zope.contenttype import add_files
         from zope.contenttype import guess_content_type
