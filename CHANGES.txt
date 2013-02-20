@@ -4,7 +4,8 @@ Change History
 4.0.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Change the file contents argument of guess_content_type from string to bytes.
+  This change has no effect on Python 2.
 
 
 4.0.0 (2013-02-11)
