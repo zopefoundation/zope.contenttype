@@ -49,9 +49,9 @@ class ContentTypesTestCase(unittest.TestCase):
         from zope.contenttype import guess_content_type
         filename = self._getFilename('mime.types-1')
         add_files([filename])
-        ctype, encoding = guess_content_type(body='text file')
+        ctype, encoding = guess_content_type(body=b'text file')
         self.assertEqual(ctype, "text/plain")
-        ctype, encoding = guess_content_type(body='\001binary')
+        ctype, encoding = guess_content_type(body=b'\001binary')
         self.assertEqual(ctype, "application/octet-stream")
         ctype, encoding = guess_content_type()
         self.assertEqual(ctype, "text/x-unknown-content-type")
@@ -63,7 +63,7 @@ class ContentTypesTestCase(unittest.TestCase):
         filename = self._getFilename('mime.types-1')
         add_files([filename])
         ctype, encoding = guess_content_type("foo.ztmt-1")
-        self.assert_(encoding is None)
+        self.assertTrue(encoding is None)
         self.assertEqual(ctype, "text/x-vnd.zope.test-mime-type-1")
         ctype, encoding = guess_content_type("foo.ztmt-1.gz")
         self.assertEqual(encoding, "gzip")
@@ -77,39 +77,39 @@ class ContentTypesTestCase(unittest.TestCase):
         filename2 = self._getFilename('mime.types-2')
         add_files([filename1, filename2])
         ctype, encoding = guess_content_type("foo.ztmt-1")
-        self.assert_(encoding is None)
+        self.assertTrue(encoding is None)
         self.assertEqual(ctype, "text/x-vnd.zope.test-mime-type-1")
         ctype, encoding = guess_content_type("foo.ztmt-2")
-        self.assert_(encoding is None)
+        self.assertTrue(encoding is None)
         self.assertEqual(ctype, "text/x-vnd.zope.test-mime-type-2")
         self._check_types_count(2)
 
     def test_text_type(self):
-        HTML = '<HtmL><body>hello world</body></html>'
+        HTML = b'<HtmL><body>hello world</body></html>'
         from zope.contenttype import text_type
         self.assertEqual(text_type(HTML),
                          'text/html')
-        self.assertEqual(text_type('<?xml version="1.0"><foo/>'),
+        self.assertEqual(text_type(b'<?xml version="1.0"><foo/>'),
                          'text/xml')
-        self.assertEqual(text_type('<?XML version="1.0"><foo/>'),
+        self.assertEqual(text_type(b'<?XML version="1.0"><foo/>'),
                          'text/xml')
-        self.assertEqual(text_type('foo bar'),
+        self.assertEqual(text_type(b'foo bar'),
                          'text/plain')
-        self.assertEqual(text_type('<!DOCTYPE HTML PUBLIC '
-                                   '"-//W3C//DTD HTML 4.01 Transitional//EN" '
-                                   '"http://www.w3.org/TR/html4/loose.dtd">'),
+        self.assertEqual(text_type(b'<!DOCTYPE HTML PUBLIC '
+                                   b'"-//W3C//DTD HTML 4.01 Transitional//EN" '
+                                   b'"http://www.w3.org/TR/html4/loose.dtd">'),
                          'text/html')
-        self.assertEqual(text_type('\n\n<!DOCTYPE html>\n'), 'text/html')
+        self.assertEqual(text_type(b'\n\n<!DOCTYPE html>\n'), 'text/html')
         # we can also parse text snippets
-        self.assertEqual(text_type('<p>Hello</p>'), 'text/html')
-        longtext = 'abc ' * 100
-        self.assertEqual(text_type('<p>%s</p>' % longtext), 'text/html')
+        self.assertEqual(text_type(b'<p>Hello</p>'), 'text/html')
+        longtext = b'abc ' * 100
+        self.assertEqual(text_type(b'<p>' + longtext + b'</p>'), 'text/html')
         # See https://bugs.launchpad.net/bugs/487998
-        self.assertEqual(text_type(' ' * 14 + HTML),
+        self.assertEqual(text_type(b' ' * 14 + HTML),
                          'text/html')
-        self.assertEqual(text_type(' ' * 14 + 'abc'),
+        self.assertEqual(text_type(b' ' * 14 + b'abc'),
                          'text/plain')
-        self.assertEqual(text_type(' ' * 14),
+        self.assertEqual(text_type(b' ' * 14),
                          'text/plain')
 
 

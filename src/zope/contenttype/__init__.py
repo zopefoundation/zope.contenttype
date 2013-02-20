@@ -16,7 +16,7 @@ import re
 import os.path
 import mimetypes
 
-find_binary = re.compile('[\0-\7]').search
+find_binary = re.compile(b'[\0-\7]').search
 
 
 def text_type(s):
@@ -30,25 +30,25 @@ def text_type(s):
     s2 = s.strip()[:max_tags].lower()
 
     if len(s2) == max_tags:
-        if s2.startswith('<html>'):
+        if s2.startswith(b'<html>'):
             return 'text/html'
 
-        if s2.startswith('<!doctype html'):
+        if s2.startswith(b'<!doctype html'):
             return 'text/html'
 
         # what about encodings??
-        if s2.startswith('<?xml'):
+        if s2.startswith(b'<?xml'):
             return 'text/xml'
 
     # we also recognize small snippets of HTML - the closing tag might be
     # anywhere, even at the end of
-    if '</' in s:
+    if b'</' in s:
         return 'text/html'
 
     return 'text/plain'
 
 
-def guess_content_type(name='', body='', default=None):
+def guess_content_type(name='', body=b'', default=None):
     """Given a named piece of content, try to guess its content type.
 
     The implementation relies on the 'mimetypes' standard Python module,
