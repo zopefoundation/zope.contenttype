@@ -1,8 +1,10 @@
 Change History
 ==============
 
-4.0.2 (unreleased)
+4.1.0 (unreleased)
 ------------------
+
+- Add support for Python 3.4 and PyPy3.
 
 - Add support for testing on Travis.
 
@@ -19,7 +21,7 @@ Change History
 
 - Add ``tox.ini`` and manifest.
 
-- Add support for Python 3.3 and PyPy 1.9.
+- Add support for Python 3.3 and PyPy.
 
 - Drop support for Python 2.4 and 2.5.
 

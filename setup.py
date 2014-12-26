@@ -31,7 +31,7 @@ long_description = read('README.rst') + '\n' + read('CHANGES.rst')
 
 setup(
     name='zope.contenttype',
-    version='4.0.2.dev0',
+    version='4.1.0.dev0',
     url='http://pypi.python.org/pypi/zope.contenttype',
     author='Zope Foundation and Contributors',
     author_email='zope-dev@zope.org',
@@ -46,6 +46,7 @@ setup(
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.3',
+        'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy',
         'Operating System :: OS Independent',
