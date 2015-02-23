@@ -105,7 +105,7 @@ here = os.path.dirname(os.path.abspath(__file__))
 add_files([os.path.join(here, "mime.types")])
 
 # Python 2/3 compatibility for testing.
-def _print(s):
+def _print(s):  # pragma: NO COVER
     print(s)
 
 def main():

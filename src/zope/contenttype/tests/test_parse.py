@@ -31,6 +31,9 @@ class ParseOrderedTestCase(unittest.TestCase):
     def oneParam(self, name, value):
         return [(name, value)]
 
+    def test_invalid_type(self):
+        self.assertRaises(ValueError, self._callFUT, 'no-slash-here')
+
     def test_without_params(self):
         self.assertEqual(self._callFUT("text/plain"),
                          ("text", "plain", self.empty_params))
@@ -40,6 +43,12 @@ class ParseOrderedTestCase(unittest.TestCase):
                          ("text", "plain", self.empty_params))
         self.assertEqual(self._callFUT("text / vnd.wap.wml"),
                          ("text", "vnd.wap.wml", self.empty_params))
+
+    def test_invalid_params(self):
+        self.assertRaises(ValueError,
+                          self._callFUT, 'text/plain; foo="abc')
+        self.assertRaises(ValueError,
+                          self._callFUT, 'text/plain; foo="abc" bar')
 
     def test_with_empty_params(self):
         self.assertEqual(self._callFUT("text/plain ; "),

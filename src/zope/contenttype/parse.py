@@ -86,12 +86,7 @@ def _parse_params(string):
     return result
 
 
-def _quoted_string_match(string):
-    # This support RFC 822 quoted-string values.
-    global _quoted_string_match
-    _quoted_string_match = re.compile(
-        '"(?:\\\\.|[^"\n\r\\\\])*"', re.DOTALL).match
-    return _quoted_string_match(string)
+_quoted_string_match = re.compile('"(?:\\\\.|[^"\n\r\\\\])*"', re.DOTALL).match
 
 def _check_token(string):
     if _token_match(string) is None:
