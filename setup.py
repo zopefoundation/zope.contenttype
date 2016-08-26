@@ -31,7 +31,7 @@ long_description = read('README.rst') + '\n' + read('CHANGES.rst')
 
 setup(
     name='zope.contenttype',
-    version='4.2.0',
+    version='4.3.0.dev0',
     url='http://pypi.python.org/pypi/zope.contenttype',
     author='Zope Foundation and Contributors',
     author_email='zope-dev@zope.org',
