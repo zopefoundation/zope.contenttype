@@ -163,18 +163,18 @@ class JoinTestCase(unittest.TestCase):
         # multiple parameters given as a list maintain order:
         self.assertEqual(
             self._callFUT(("text", "plain",
-                              [("charset", "UTF-8"), ("format", "flowed")])),
+                           [("charset", "UTF-8"), ("format", "flowed")])),
             "text/plain;charset=UTF-8;format=flowed")
         self.assertEqual(
             self._callFUT(("text", "plain",
-                              [("format", "flowed"), ("charset", "UTF-8")])),
+                           [("format", "flowed"), ("charset", "UTF-8")])),
             "text/plain;format=flowed;charset=UTF-8")
 
     def test_multi_params_dict_sorted_order(self):
         # multiple parameters given as a dict are sorted by param name:
         self.assertEqual(
             self._callFUT(("text", "plain",
-                              {"charset": "UTF-8", "format": "flowed"})),
+                           {"charset": "UTF-8", "format": "flowed"})),
             "text/plain;charset=UTF-8;format=flowed")
 
     def test_params_list_quoted(self):
@@ -205,8 +205,4 @@ class JoinTestCase(unittest.TestCase):
 
 
 def test_suite():
-    return unittest.TestSuite((
-        unittest.makeSuite(ParseOrderedTestCase),
-        unittest.makeSuite(ParseTestCase),
-        unittest.makeSuite(JoinTestCase),
-    ))
+    return unittest.defaultTestLoader.loadTestsFromName(__name__)
