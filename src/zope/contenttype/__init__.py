@@ -12,6 +12,7 @@
 ##############################################################################
 """A utility module for content-type handling.
 """
+from __future__ import print_function
 import re
 import os.path
 import mimetypes
@@ -71,7 +72,7 @@ def guess_content_type(name='', body=b'', default=None):
         else:
             type = default or 'text/x-unknown-content-type'
 
-    return type.lower(), enc and enc.lower() or None
+    return type.lower(), enc.lower() if enc else None
 
 
 def add_files(filenames):
@@ -104,15 +105,12 @@ def add_files(filenames):
 here = os.path.dirname(os.path.abspath(__file__))
 add_files([os.path.join(here, "mime.types")])
 
-# Python 2/3 compatibility for testing.
-def _print(s):  # pragma: NO COVER
-    print(s)
 
 def main():
     items = mimetypes.types_map.items()
     items = sorted(items)
     for item in items:
-        _print("%s:\t%s" % item)
+        print("%s:\t%s" % item)
 
-if __name__ == '__main__': #pragma: nocover
+if __name__ == '__main__':
     main()

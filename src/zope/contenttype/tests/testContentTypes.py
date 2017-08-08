@@ -13,6 +13,7 @@
 ##############################################################################
 """Tests of the contenttypes extension mechanism.
 """
+from __future__ import print_function
 import unittest
 
 class ContentTypesTestCase(unittest.TestCase):
@@ -39,21 +40,22 @@ class ContentTypesTestCase(unittest.TestCase):
 
     def test_main(self):
         import zope.contenttype
-        _print = zope.contenttype._print
-        zope.contenttype._print = lambda s: None
+        result = []
+        zope.contenttype.print = result.append
         zope.contenttype.main()
-        zope.contenttype._print = _print
+        del zope.contenttype.print
+        self.assertTrue(result)
 
     def test_guess_content_type(self):
         from zope.contenttype import add_files
         from zope.contenttype import guess_content_type
         filename = self._getFilename('mime.types-1')
         add_files([filename])
-        ctype, encoding = guess_content_type(body=b'text file')
+        ctype, _encoding = guess_content_type(body=b'text file')
         self.assertEqual(ctype, "text/plain")
-        ctype, encoding = guess_content_type(body=b'\001binary')
+        ctype, _encoding = guess_content_type(body=b'\001binary')
         self.assertEqual(ctype, "application/octet-stream")
-        ctype, encoding = guess_content_type()
+        ctype, _encoding = guess_content_type()
         self.assertEqual(ctype, "text/x-unknown-content-type")
 
 
@@ -114,4 +116,4 @@ class ContentTypesTestCase(unittest.TestCase):
 
 
 def test_suite():
-    return unittest.makeSuite(ContentTypesTestCase)
+    return unittest.defaultTestLoader.loadTestsFromName(__name__)
