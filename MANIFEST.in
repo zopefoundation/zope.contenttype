@@ -9,4 +9,8 @@ exclude coverage.xml
 
 recursive-include src *
 
+recursive-include docs *.py
+recursive-include docs *.rst
+recursive-include docs Makefile
+
 global-exclude *.pyc

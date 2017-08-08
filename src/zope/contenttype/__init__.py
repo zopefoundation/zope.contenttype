@@ -21,10 +21,15 @@ find_binary = re.compile(b'[\0-\7]').search
 
 
 def text_type(s):
-    """Given an unnamed piece of text, try to guess its content type.
+    """
+    Given an unnamed piece of data, try to guess its content type.
 
-    Detects HTML, XML, and plain text.  Returns a MIME type string
-    such as 'text/html'.
+    Detects HTML, XML, and plain text.
+
+    :return: A MIME type string such as 'text/html'.
+    :rtype: str
+
+    :param bytes s: The binary data to examine.
     """
     # at least the maximum length of any tags we look for
     max_tags = 14
@@ -50,13 +55,20 @@ def text_type(s):
 
 
 def guess_content_type(name='', body=b'', default=None):
-    """Given a named piece of content, try to guess its content type.
+    """
+    Given a named piece of content, try to guess its content type.
 
-    The implementation relies on the 'mimetypes' standard Python module,
-    the 'text_type' function also defined in this module, and a simple
+    The implementation relies on the :mod:`mimetypes` standard Python module,
+    the :func:`text_type` function also defined in this module, and a simple
     heuristic for detecting binary data.
 
-    Returns a MIME type string such as "text/html".
+    :return: A tuple of ``(type, encoding)`` like :func:`mimetypes.guess_type`.
+
+    :keyword str name: The file name for the content. This is given priority
+       when guessing the type.
+    :keyword bytes body: The binary data of the content.
+    :keyword str default: If given, and no content type can be guessed, this
+       will be returned as the ``type`` portion.
     """
     # Attempt to determine the content type (and possibly
     # content-encoding) based on an an object's name and
@@ -76,7 +88,8 @@ def guess_content_type(name='', body=b'', default=None):
 
 
 def add_files(filenames):
-    """Add the names of MIME type map files to the standard 'mimetypes' module.
+    """
+    Add the names of MIME type map files to the standard :mod:`mimetypes` module.
 
     MIME type map files are used for detecting the MIME type of some content
     based on the content's filename extension.
@@ -111,6 +124,3 @@ def main():
     items = sorted(items)
     for item in items:
         print("%s:\t%s" % item)
-
-if __name__ == '__main__':
-    main()

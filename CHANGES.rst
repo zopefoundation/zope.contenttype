@@ -9,6 +9,8 @@
 
 - Drop support for Python 3.3.
 
+- Host documentation at https://zopecontenttype.readthedocs.io
+
 
 4.2.0 (2016-08-26)
 ==================
