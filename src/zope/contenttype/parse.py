@@ -13,8 +13,11 @@
 ##############################################################################
 """MIME Content-Type parsing helper functions.
 
-This supports parsing RFC 1341 Content-Type values, including
-quoted-string values as defined in RFC 822.
+This supports parsing `RFC 1341`_ Content-Type values, including
+quoted-string values as defined in `RFC 822`_.
+
+.. _RFC 1341: https://tools.ietf.org/html/rfc1341
+.. _RFC 822: https://tools.ietf.org/html/rfc822
 
 """
 __docformat__ = "reStructuredText"
@@ -27,6 +30,17 @@ import re
 
 
 def parse(string):
+    """
+    Parse the given string as a MIME type.
+
+    This uses :func:`parseOrdered` and can raise the same
+    exceptions it does.
+
+    :return: A tuple ``(major, minor, params)`` where ``major``
+      and ``minor`` are the two parts of the type, and ``params``
+      is a dictionary containing any parameters by name.
+    :param str string: The string to parse.
+    """
     major, minor, params = parseOrdered(string)
     d = {}
     for (name, value) in params:
@@ -34,6 +48,15 @@ def parse(string):
     return major, minor, d
 
 def parseOrdered(string):
+    """
+    Parse the given string as a MIME type.
+
+    :return: A tuple ``(major, minor, params)``  where ``major``
+      and ``minor`` are the two parts of the type, and ``params`` is a
+      sequence of the parameters in order.
+    :raises ValueError: If the *string* is malformed.
+    :param str string: The string to parse.
+    """
     if ";" in string:
         type, params = string.split(";", 1)
         params = _parse_params(params)
@@ -105,6 +128,14 @@ def _unescape(string):
 
 
 def join(spec):
+    """
+    Given a three-part tuple as produced by :func:`parse` or :func:`parseOrdered`,
+    return the string representation.
+
+    :returns: The string representation. For example, given ``('text',
+      'plain', [('encoding','utf-8')])``, this will produce ``'text/plain;encoding=utf-8'``.
+    :rtype: str
+    """
     (major, minor, params) = spec
     pstr = ""
     try:

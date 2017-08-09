@@ -16,4 +16,16 @@
 .. image:: https://coveralls.io/repos/github/zopefoundation/zope.contenttype/badge.svg?branch=master
         :target: https://coveralls.io/github/zopefoundation/zope.contenttype?branch=master
 
-A utility module for content-type handling.
+.. image:: https://readthedocs.org/projects/zopecontenttype/badge/?version=latest
+        :target: https://zopecontenttype.readthedocs.io/en/latest/
+        :alt: Documentation Status
+
+A utility module for content-type (MIME type) handling.
+
+Functions include:
+
+- Guessing a content type given a name and (optional) body data.
+- Guessing a content type given some text.
+- Parsing MIME types.
+
+Documentation is hosted at https://zopecontenttype.readthedocs.io/en/latest/

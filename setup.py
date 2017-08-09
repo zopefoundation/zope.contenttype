@@ -67,6 +67,10 @@ setup(
     tests_require=TESTS_REQUIRE,
     extras_require={
         'test': TESTS_REQUIRE,
+        'docs': [
+            'Sphinx',
+            'sphinx_rtd_theme',
+        ],
     },
     include_package_data=True,
     zip_safe=False,
