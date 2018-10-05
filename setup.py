@@ -35,7 +35,7 @@ TESTS_REQUIRE = [
 
 setup(
     name='zope.contenttype',
-    version='4.3.1.dev0',
+    version='4.4',
     url='http://github.com/zopefoundation/zope.contenttype',
     author='Zope Foundation and Contributors',
     author_email='zope-dev@zope.org',
