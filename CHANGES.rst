@@ -5,7 +5,10 @@
 4.5 (unreleased)
 ================
 
-- Nothing changed yet.
+- Fix tests on Python 3.8
+  (`#7 <https://github.com/zopefoundation/zope.contenttype/issues/7>`_).
+
+- Add support for Python 3.8.
 
 
 4.4 (2018-10-05)

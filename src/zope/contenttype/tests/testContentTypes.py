@@ -22,6 +22,7 @@ class ContentTypesTestCase(unittest.TestCase):
         import mimetypes
         mimetypes.init()
         self._old_state = mimetypes.__dict__.copy()
+        self._old_types_count = len(self._old_state["types_map"])
 
     def tearDown(self):
         import mimetypes
@@ -31,7 +32,7 @@ class ContentTypesTestCase(unittest.TestCase):
     def _check_types_count(self, delta):
         import mimetypes
         self.assertEqual(len(mimetypes.types_map),
-                         len(self._old_state["types_map"]) + delta)
+                         self._old_types_count + delta)
 
     def _getFilename(self, name):
         import os.path
