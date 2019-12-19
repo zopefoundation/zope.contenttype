@@ -2,8 +2,8 @@
  Change History
 ================
 
-4.5 (unreleased)
-================
+4.5.0 (2019-12-19)
+==================
 
 - Fix tests on Python 3.8
   (`#7 <https://github.com/zopefoundation/zope.contenttype/issues/7>`_).
