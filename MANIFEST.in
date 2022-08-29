@@ -12,3 +12,6 @@ recursive-include docs *.txt
 recursive-include docs Makefile
 
 recursive-include src *.py
+recursive-include src *.types
+recursive-include src *.types-1
+recursive-include src *.types-2
