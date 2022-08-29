@@ -29,6 +29,7 @@ def read(*rnames):
     with open(os.path.join(os.path.dirname(__file__), *rnames)) as f:
         return f.read()
 
+
 long_description = read('README.rst') + '\n' + read('CHANGES.rst')
 
 TESTS_REQUIRE = [
@@ -65,7 +66,7 @@ setup(
     long_description=long_description,
     packages=find_packages('src'),
     package_dir={'': 'src'},
-    namespace_packages=['zope',],
+    namespace_packages=['zope', ],
     install_requires=['setuptools'],
     test_suite='zope.contenttype',
     tests_require=TESTS_REQUIRE,
