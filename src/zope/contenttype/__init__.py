@@ -91,7 +91,8 @@ def guess_content_type(name='', body=b'', default=None):
 
 def add_files(filenames):
     """
-    Add the names of MIME type map files to the standard :mod:`mimetypes` module.
+    Add the names of MIME type map files to the standard :mod:`mimetypes`
+    module.
 
     MIME type map files are used for detecting the MIME type of some content
     based on the content's filename extension.

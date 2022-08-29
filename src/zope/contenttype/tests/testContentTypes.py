@@ -61,7 +61,6 @@ class ContentTypesTestCase(unittest.TestCase):
         ctype, _encoding = guess_content_type()
         self.assertEqual(ctype, "text/x-unknown-content-type")
 
-
     def test_add_one_file(self):
         from zope.contenttype import add_files
         from zope.contenttype import guess_content_type

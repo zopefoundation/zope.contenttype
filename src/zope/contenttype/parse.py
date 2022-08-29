@@ -47,6 +47,7 @@ def parse(string):
         d[name] = value
     return major, minor, d
 
+
 def parseOrdered(string):
     """
     Parse the given string as a MIME type.
@@ -70,11 +71,12 @@ def parseOrdered(string):
     major, minor = type.lower().split("/", 1)
     return _check_token(major.strip()), _check_token(minor.strip()), params
 
+
 def _parse_params(string):
     result = []
     string = string.strip()
     while string:
-        if not "=" in string:
+        if "=" not in string:
             raise ValueError("parameter values are not optional")
         name, rest = string.split("=", 1)
         name = _check_token(name.strip().lower())
@@ -89,7 +91,6 @@ def _parse_params(string):
                 raise ValueError("invalid quoted-string in %r" % rest)
             value = m.group()
             rest = rest[m.end():].strip()
-            #import pdb; pdb.set_trace()
             if rest[:1] not in ("", ";"):
                 raise ValueError(
                     "invalid token following quoted-string: %r" % rest)
@@ -112,6 +113,7 @@ def _parse_params(string):
 _quoted_string_match = re.compile('"(?:\\\\.|[^"\n\r\\\\])*"', re.DOTALL).match
 _token_match = re.compile("[^][ \t\n\r()<>@,;:\"/?=\\\\]+$").match
 
+
 def _check_token(string):
     if _token_match(string) is None:
         raise ValueError('"%s" is not a valid token' % string)
@@ -129,11 +131,12 @@ def _unescape(string):
 
 def join(spec):
     """
-    Given a three-part tuple as produced by :func:`parse` or :func:`parseOrdered`,
-    return the string representation.
+    Given a three-part tuple as produced by :func:`parse` or
+    :func:`parseOrdered`, return the string representation.
 
-    :returns: The string representation. For example, given ``('text',
-      'plain', [('encoding','utf-8')])``, this will produce ``'text/plain;encoding=utf-8'``.
+    :returns: The string representation. For example, given ``('text', 'plain',
+      [('encoding','utf-8')])``, this will produce
+      ``'text/plain;encoding=utf-8'``.
     :rtype: str
     """
     (major, minor, params) = spec
@@ -149,6 +152,7 @@ def join(spec):
     for name, value in params:
         pstr += ";%s=%s" % (name, _escape(value))
     return "%s/%s%s" % (major, minor, pstr)
+
 
 def _escape(string):
     try:

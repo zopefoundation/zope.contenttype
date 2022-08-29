@@ -119,6 +119,7 @@ class ParseOrderedTestCase(unittest.TestCase):
             self._callFUT(r'a/b;c="\\\""'),
             ("a", "b", self.oneParam("c", r'\"')))
 
+
 class ParseTestCase(ParseOrderedTestCase):
 
     empty_params = {}
