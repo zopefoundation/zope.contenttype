@@ -17,3 +17,10 @@ use-flake8 = true
 
 [coverage]
 fail-under = 100
+
+[manifest]
+additional-rules = [
+    "recursive-include src *.types",
+    "recursive-include src *.types-1",
+    "recursive-include src *.types-2",
+    ]
