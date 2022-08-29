@@ -14,7 +14,9 @@
 """Tests of the contenttypes extension mechanism.
 """
 from __future__ import print_function
+
 import unittest
+
 
 class ContentTypesTestCase(unittest.TestCase):
 

@@ -13,9 +13,11 @@
 """A utility module for content-type handling.
 """
 from __future__ import print_function
-import re
-import os.path
+
 import mimetypes
+import os.path
+import re
+
 
 find_binary = re.compile(b'[\0-\7]').search
 
