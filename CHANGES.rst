@@ -2,8 +2,8 @@
  Change History
 ================
 
-4.5.1 (unreleased)
-==================
+4.6 (unreleased)
+================
 
 - Add support for Python 3.9, 3.10.
 
