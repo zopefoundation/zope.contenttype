@@ -12,7 +12,6 @@
 ##############################################################################
 """A utility module for content-type handling.
 """
-from __future__ import print_function
 
 import mimetypes
 import os.path
