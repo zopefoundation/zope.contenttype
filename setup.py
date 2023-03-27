@@ -65,9 +65,8 @@ setup(
     packages=find_packages('src'),
     package_dir={'': 'src'},
     namespace_packages=['zope', ],
+    python_requires='>=3.7',
     install_requires=['setuptools'],
-    test_suite='zope.contenttype',
-    tests_require=TESTS_REQUIRE,
     extras_require={
         'test': TESTS_REQUIRE,
         'docs': [
