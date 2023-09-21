@@ -5,7 +5,7 @@
 5.1 (unreleased)
 ================
 
-- Nothing changed yet.
+- Add some more MIME types and extensions.
 
 
 5.0 (2023-03-27)
