@@ -2,7 +2,7 @@
  Change History
 ================
 
-5.1 (unreleased)
+5.1 (2023-09-21)
 ================
 
 - Add some more MIME types and extensions.
