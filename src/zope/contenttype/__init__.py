@@ -74,7 +74,7 @@ def guess_content_type(name='', body=b'', default=None):
     # Attempt to determine the content type (and possibly
     # content-encoding) based on an an object's name and
     # entity body.
-    type, enc = mimetypes.guess_type(name)
+    type, enc = mimetypes.guess_type(name, strict=False)
     if type is None:
         if body:
             if find_binary(body) is not None:

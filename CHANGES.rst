@@ -5,7 +5,11 @@
 5.2 (unreleased)
 ================
 
-- Nothing changed yet.
+- Call ``mimetypes.guess_type`` with parameter ``strict=False``. This
+  recognizes a few more content types related to ``midi``, ``pict``,
+  ``xul`` and ``rtf``;
+  for details, see
+  `#14 <https://github.com/zopefoundation/zope.contenttype/issues/7>`_.
 
 
 5.1 (2023-09-21)

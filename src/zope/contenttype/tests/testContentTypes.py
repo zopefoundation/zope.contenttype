@@ -59,6 +59,8 @@ class ContentTypesTestCase(unittest.TestCase):
         self.assertEqual(ctype, "application/octet-stream")
         ctype, _encoding = guess_content_type()
         self.assertEqual(ctype, "text/x-unknown-content-type")
+        ctype, _encoding = guess_content_type("abc.rtf")
+        self.assertEqual(ctype, "application/rtf")
 
     def test_add_one_file(self):
         from zope.contenttype import add_files
