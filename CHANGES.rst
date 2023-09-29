@@ -5,8 +5,6 @@
 5.2 (unreleased)
 ================
 
-- Add some more MIME types and extensions.
-
 - Call ``mimetypes.guess_type`` with parameter ``strict=False``. This
   recognizes a few more content types related to ``midi``, ``pict``,
   ``xul`` and ``rtf``;
