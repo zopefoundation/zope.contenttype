@@ -2,7 +2,7 @@
  Change History
 ================
 
-5.1 (unreleased)
+5.2 (unreleased)
 ================
 
 - Add some more MIME types and extensions.
@@ -12,6 +12,12 @@
   ``xul`` and ``rtf``;
   for details, see
   `#14 <https://github.com/zopefoundation/zope.contenttype/issues/7>`_.
+
+
+5.1 (2023-09-21)
+================
+
+- Add some more MIME types and extensions.
 
 
 5.0 (2023-03-27)
