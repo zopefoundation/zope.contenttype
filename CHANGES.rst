@@ -5,6 +5,10 @@
 5.2 (unreleased)
 ================
 
+- Add support for Python 3.12, 3.13.
+
+- Drop support for Python 3.7, 3.8.
+
 - Call ``mimetypes.guess_type`` with parameter ``strict=False``. This
   recognizes a few more content types related to ``midi``, ``pict``,
   ``xul`` and ``rtf``;
