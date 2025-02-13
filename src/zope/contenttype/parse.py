@@ -150,8 +150,8 @@ def join(spec):
         # ensure a predictable order:
         params = sorted(params)
     for name, value in params:
-        pstr += ";{}={}".format(name, _escape(value))
-    return "{}/{}{}".format(major, minor, pstr)
+        pstr += f";{name}={_escape(value)}"
+    return f"{major}/{minor}{pstr}"
 
 
 def _escape(string):
