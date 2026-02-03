@@ -20,6 +20,7 @@
 # sys.path.insert(0, os.path.abspath('.'))
 import os
 import sys
+from datetime import datetime
 from importlib.metadata import version
 
 
@@ -59,7 +60,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'zope.contenttype'
-copyright = '2017, Zope Community'
+copyright = f'2017-{datetime.now().year}, Zope Community'
 author = 'Zope Community'
 
 # The version info for the project you're documenting, acts as replacement for
