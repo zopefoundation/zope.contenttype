@@ -107,6 +107,21 @@ class ParseOrderedTestCase(unittest.TestCase):
             self._callFUT('text/plain;charset=utf-8;format="flowed"'),
             ("text", "plain", [("charset", "utf-8"), ("format", "flowed")]))
 
+    def test_more_than_two_parameters(self):
+        # more than two unquoted parameters used to blow up with
+        # "ValueError: too many values to unpack", since splitting the
+        # remaining parameters on ";" doesn't limit the number of pieces
+        self.assertEqual(
+            self._callFUT("text/plain;charset=utf-8;format=flowed;delsp=yes"),
+            ("text", "plain", [("charset", "utf-8"), ("format", "flowed"),
+                               ("delsp", "yes")]))
+        # same, but with a quoted-string value in the middle
+        self.assertEqual(
+            self._callFUT(
+                'text/plain;charset=utf-8;format="flowed";delsp=yes'),
+            ("text", "plain", [("charset", "utf-8"), ("format", "flowed"),
+                               ("delsp", "yes")]))
+
     def test_quoted_strings(self):
         p = self.oneParam("c", " This [] has <> ? other () chars\t")
         self.assertEqual(
@@ -138,6 +153,17 @@ class ParseTestCase(ParseOrderedTestCase):
         self.assertEqual(
             self._callFUT('text/plain;charset=utf-8;format="flowed"'),
             ("text", "plain", {"charset": "utf-8", "format": "flowed"}))
+
+    def test_more_than_two_parameters(self):
+        self.assertEqual(
+            self._callFUT("text/plain;charset=utf-8;format=flowed;delsp=yes"),
+            ("text", "plain",
+             {"charset": "utf-8", "format": "flowed", "delsp": "yes"}))
+        self.assertEqual(
+            self._callFUT(
+                'text/plain;charset=utf-8;format="flowed";delsp=yes'),
+            ("text", "plain",
+             {"charset": "utf-8", "format": "flowed", "delsp": "yes"}))
 
 
 class JoinTestCase(unittest.TestCase):

@@ -11,6 +11,11 @@
 
 - Drop support for Python 3.9.
 
+- Fix ``parse.parseOrdered`` (and ``parse.parse``) raising
+  ``ValueError: too many values to unpack`` for a content type with more
+  than two parameters where the trailing ones are not quoted strings, for
+  example ``text/plain;charset=utf-8;format=flowed;delsp=yes``.
+
 
 6.0 (2025-09-12)
 ================

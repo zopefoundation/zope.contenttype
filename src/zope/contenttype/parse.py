@@ -98,7 +98,7 @@ def _parse_params(string):
             value = _unescape(value)
 
         elif ";" in rest:
-            value, rest = rest.split(";")
+            value, rest = rest.split(";", 1)
             value = _check_token(value.strip())
 
         else:
